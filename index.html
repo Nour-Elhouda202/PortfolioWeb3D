@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Module Web 3 - Nour Elhouda | Master 2</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.0.1/model-viewer.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+   
+
+
+    <!-- CERCLES 3D FLOTTANTS EN ARRIÈRE-PLAN -->
+    <div class="animated-background">
+        <div class="floating-circle circle-1"></div>
+        <div class="floating-circle circle-2"></div>
+        <div class="floating-circle circle-3"></div>
+        <div class="floating-circle circle-4"></div>
+        <div class="floating-circle circle-5"></div>
+        <div class="floating-circle circle-6"></div>
+        <div class="floating-circle circle-7"></div>
+        <div class="floating-circle circle-8"></div>
+    </div>
+
+    <!-- VAGUES SVG -->
+    <div class="wave-background">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none" style="width:100%;height:100%">
+            <path fill="#FF6F61" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+        </svg>
+    </div>
+
+    <!-- NAVIGATION -->
+    <nav id="navbar">
+        <div class="container">
+            <div class="logo">
+                <div class="cube-3d">
+                    <div class="cube-face cube-front"><i class="fas fa-code"></i></div>
+                    <div class="cube-face cube-back"><i class="fas fa-laptop"></i></div>
+                    <div class="cube-face cube-right"><i class="fas fa-terminal"></i></div>
+                    <div class="cube-face cube-left"><i class="fas fa-desktop"></i></div>
+                    <div class="cube-face cube-top"><i class="fas fa-globe"></i></div>
+                    <div class="cube-face cube-bottom"><i class="fas fa-palette"></i></div>
+                </div>
+                <span class="logo-text">Portfolio Web 3</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link">Accueil</a></li>
+                <li><a href="#about" class="nav-link">À Propos</a></li>
+                <li><a href="#modules" class="nav-link">Modules</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><button class="theme-toggle" onclick="toggleTheme()"><i class="fas fa-moon"></i></button></li>
+            </ul>
+            <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+        </div>
+    </nav>
+
+    <!-- SECTION HERO -->
+    <section class="hero" id="home">
+        <div class="shape shape1"></div>
+        <div class="shape shape2"></div>
+        <div class="shape shape3"></div>
+        <div class="hero-content">
+            <h1>Portfolio Académique</h1>
+            
+            <p>Ingénieur de Données et Technologies Web | Groupe 02</p>
+            <a href="#modules" class="cta-button">Découvrir Mes Travaux</a>
+        </div>
+    </section>
+
+    <!-- SECTION À PROPOS -->
+    <section id="about" class="parallax-section"> 
+        <h2 class="section-title scroll-reveal">À Propos</h2>
+        <div class="about-content">
+            <!-- COLONNE DROITE: DESCRIPTION ET COMPÉTENCES -->
+            <div class="about-text scroll-reveal">
+                <h3>Bienvenue! 👋</h3>
+                <p>Je suis <strong>Arab Nour Elhouda</strong>, étudiante en Master 2 Ingénieur de Données et Technologies Web (Groupe 02). Ce portfolio présente mes travaux en modélisation 3D et développement web.</p>
+                <p>Passionnée par le développement web moderne et l'ingénierie des données, je combine créativité et compétences techniques pour créer des solutions innovantes.</p>
+                
+                <h4 class="skills-title"><i class="fas fa-code"></i> Mes Compétences</h4>
+                <div class="skills-bars">
+                    <!-- Première ligne de compétences -->
+                    <div class="skills-row">
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name"><i class="fab fa-html5"></i> HTML5</span>
+                                <span class="skill-percentage">90%</span>
+                            </div>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar" data-progress="90"></div>
+                            </div>
+                        </div>
+
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name"><i class="fab fa-css3-alt"></i> CSS3</span>
+                                <span class="skill-percentage">85%</span>
+                            </div>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar" data-progress="85"></div>
+                            </div>
+                        </div>
+
+                        
+                    </div>
+
+                    <!-- Deuxième ligne -->
+                    <div class="skills-row">
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name"><i class="fab fa-js"></i> JS</span>
+                                <span class="skill-percentage">87%</span>
+                            </div>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar" data-progress="87"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name"><i class="fab fa-react"></i> React</span>
+                                <span class="skill-percentage">75%</span>
+                            </div>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar" data-progress="75"></div>
+                            </div>
+                        </div>
+
+                        
+                    </div>
+
+                    <!-- Troisième ligne -->
+                    <div class="skills-row">
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name"><i class="fab fa-php"></i> PHP</span>
+                                <span class="skill-percentage">88%</span>
+                            </div>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar" data-progress="88"></div>
+                            </div>
+                        </div>
+
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name"><i class="fab fa-python"></i> Python</span>
+                                <span class="skill-percentage">80%</span>
+                            </div>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar" data-progress="80"></div>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    <!-- Quatrième ligne -->
+                    <div class="skills-row">
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name"><i class="fab fa-java"></i> Java</span>
+                                <span class="skill-percentage">85%</span>
+                            </div>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar" data-progress="85"></div>
+                            </div>
+                        </div>
+
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name"><i class="fas fa-code"></i> Django</span>
+                                <span class="skill-percentage">70%</span>
+                            </div>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar" data-progress="70"></div>
+                            </div>
+                        </div>
+
+                        
+                    </div>
+
+                     <div class="skills-row">
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name"><i class="fab fa-bootstrap"></i> Bootstrap</span>
+                                <span class="skill-percentage">70%</span>
+                            </div>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar" data-progress="70"></div>
+                            </div>
+                        </div> 
+
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name"><i class="fas fa-palette"></i> UI/UX</span>
+                                <span class="skill-percentage">75%</span>
+                            </div>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar" data-progress="75"></div>
+                            </div>
+                        </div>
+
+                       
+
+                     </div>
+
+                     <div class="skills-row">
+
+                         <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name"><i class="fas fa-cube"></i> Web3D</span>
+                                <span class="skill-percentage">30%</span>
+                            </div>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar" data-progress="30"></div>
+                            </div>
+                        </div>
+
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name"><i class="fas fa-database"></i> Base De Données</span>
+                                <span class="skill-percentage">70%</span>
+                            </div>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar" data-progress="70"></div>
+                            </div>
+                        </div>
+                     </div>
+
+                </div>
+            </div>
+
+            <!-- COLONNE GAUCHE: PHOTO ET INFOS -->
+            <div class="about-image scroll-reveal">
+                <div class="profile-card">
+                    <div class="profile-photo-container">
+                        <img src="models/nour.jfif" alt="Nour Elhouda" class="profile-photo">
+                        <div class="photo-overlay">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                    <h3 class="profile-name">Arab Nour Elhouda</h3>
+                    <p class="profile-title">Étudiante en Master 2</p>
+                    
+                    <div class="personal-info">
+                        <div class="info-item">
+                            <i class="fas fa-birthday-cake"></i>
+                            <span>22 ans</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>Master 2 - Groupe 02</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-laptop-code"></i>
+                            <span>Ingénieur de Données et Technologies Web</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Algérie</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION MODULES -->
+    <section id="modules">
+        <div class="container">
+            <div class="header">
+                <h1 class="title">Mes Travaux Pratiques</h1>
+                <p class="subtitle">Projets de modélisation 3D interactive</p>
+            </div>
+
+            <div class="module" id="module-web3d" onclick="toggleModule('web3d')">
+                <div class="module-icon">
+                    <i class="fas fa-cube"></i>
+                </div>
+                <h2 class="module-title">Module Web 3D</h2>
+                <p class="module-desc">Travaux pratiques de modélisation 3D interactive</p>
+                
+                <div class="module-stats">
+                    <span class="stat"><i class="fas fa-tasks"></i>  Projets</span>
+                    <span class="stat"><i class="fas fa-laptop-code"></i> Traveaux</span>
+                    
+                </div>
+                
+                <div class="toggle">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+
+            <div class="content" id="content-web3d">
+                <div class="content-inner">
+                    <div class="tp-card" onclick="openModal('table-chaise')">
+                        <div class="tp-preview">
+                            <div class="tp-icon">
+                                <i class="fas fa-chair"></i>
+                            </div>
+                            <div class="tp-overlay">
+                                <i class="fas fa-eye"></i>
+                                <span>Voir en 3D</span>
+                            </div>
+                        </div>
+                        <div class="tp-info">
+                            <h3 class="tp-title">TP1: Table & Chaise 3D</h3>
+                            <p class="tp-desc">Modélisation Blender avec textures PBR</p>
+                            <div class="tp-tags">
+                                <span class="tag">Blender</span>
+                                <span class="tag success">Complet</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            
+            
+        </div>
+    </section>
+
+    <!-- MODALE 3D -->
+    <div class="modal" id="modal-table-chaise" onclick="closeModal('table-chaise')">
+        <div class="modal-box" onclick="event.stopPropagation()">
+            
+            <div class="modal-header">
+                <h3 class="modal-title">
+                    <i class="fas fa-cube"></i>
+                    TP1: Table & Chaise 3D
+                </h3>
+                <button class="btn-close" onclick="closeModal('table-chaise')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="modal-viewer">
+                <model-viewer
+                    src="models/table_chair.glb"
+                    alt="Table et chaise 3D"
+                    camera-controls
+                    auto-rotate
+                    shadow-intensity="1"
+                    exposure="1"
+                    ar
+                    ar-modes="webxr scene-viewer quick-look">
+                    
+                    <button slot="ar-button" class="btn-ar">
+                        <i class="fas fa-mobile-alt"></i>
+                        Voir en AR
+                    </button>
+                    
+                    <div class="loading" slot="poster">
+                        <div class="spinner"></div>
+                        <p>Chargement...</p>
+                    </div>
+                </model-viewer>
+
+                <div class="controls">
+                  <button class="btn-control active" onclick="toggleRotation(event)" title="Rotation">
+    <i class="fas fa-sync-alt"></i>
+</button>
+<button class="btn-control" onclick="resetView(event)" title="Réinitialiser">
+    <i class="fas fa-undo"></i>
+</button>
+<button class="btn-control" onclick="toggleFullscreen(event)" title="Plein écran">
+    <i class="fas fa-expand"></i>
+</button>
+<!-- 🆕 BOUTON TÉLÉCHARGEMENT -->
+<button class="btn-control" onclick="downloadModel(event)" title="Télécharger">
+    <i class="fas fa-download"></i>
+</button>
+
+                </div>
+            </div>
+
+            <div class="modal-info">
+                <div class="info-grid">
+                    <div class="info-item">
+                        <i class="fas fa-info-circle"></i>
+                        <h5>Description</h5>
+                        <p>Modèle Blender avec textures PBR</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-tools"></i>
+                        <h5>Technologies</h5>
+                        <p>Blender 3.6, WebGL, Model-Viewer</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-chart-bar"></i>
+                        <h5>Statistiques</h5>
+                        <p>2.5K poly • GLB • 1.2 MB</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+
+    <!-- SECTION CONTACT -->
+    <section id="contact" class="parallax-section">
+        <h2 class="section-title scroll-reveal">Contactez-Moi</h2>
+        <div class="contact-content scroll-reveal">
+            <form class="contact-form" id="contact-form">
+                <div class="form-group">
+                    <label for="name"><i class="fas fa-user"></i> Nom Complet</label>
+                    <input type="text" id="name" name="name" required placeholder="Votre nom">
+                </div>
+                <div class="form-group">
+                    <label for="email"><i class="fas fa-envelope"></i> Email</label>
+                    <input type="email" id="email" name="email" required placeholder="votre@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="subject"><i class="fas fa-tag"></i> Sujet</label>
+                    <input type="text" id="subject" name="subject" required placeholder="Sujet de votre message">
+                </div>
+                <div class="form-group">
+                    <label for="message"><i class="fas fa-comment"></i> Message</label>
+                    <textarea id="message" name="message" rows="5" required placeholder="Votre message..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn" id="submit-btn">
+                    <i class="fas fa-paper-plane"></i> Envoyer le Message
+                </button>
+            </form>
+            <div class="success-message" id="success-message">
+                <i class="fas fa-check-circle"></i> Message envoyé avec succès! Je vous répondrai bientôt. 📧
+            </div>
+            <div class="error-message" id="error-message">
+                <i class="fas fa-exclamation-circle"></i> Erreur lors de l'envoi. Veuillez réessayer.
+            </div>
+            <div class="social-links">
+                <a href="" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://mail.google.com/mail/u/0/?hl=fr#inbox" title="Email"><i class="fas fa-envelope"></i></a>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2025 Arab Nour Elhouda | Master 2 Data Engineering & Web Technologies | Groupe 02</p>
+        <p style="margin-top:.5rem;color:var(--secondary-color)">Portfolio Académique - Module Web 3D</p>
+    </footer>
+
+<script src="js/main.js"></script>
+
+
+
+</body>
+</html>
