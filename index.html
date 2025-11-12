@@ -267,138 +267,271 @@
         </div>
     </section>
 
-    <!-- SECTION MODULES -->
-    <section id="modules">
-        <div class="container">
-            <div class="header">
-                <h1 class="title">Mes Travaux Pratiques</h1>
-                <p class="subtitle">Projets de modélisation 3D interactive</p>
-            </div>
-
-            <div class="module" id="module-web3d" onclick="toggleModule('web3d')">
-                <div class="module-icon">
-                    <i class="fas fa-cube"></i>
-                </div>
-                <h2 class="module-title">Module Web 3D</h2>
-                <p class="module-desc">Travaux pratiques de modélisation 3D interactive</p>
-                
-                <div class="module-stats">
-                    <span class="stat"><i class="fas fa-tasks"></i>  Projets</span>
-                    <span class="stat"><i class="fas fa-laptop-code"></i> Traveaux</span>
-                    
-                </div>
-                
-                <div class="toggle">
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-            </div>
-
-            <div class="content" id="content-web3d">
-                <div class="content-inner">
-                    <div class="tp-card" onclick="openModal('table-chaise')">
-                        <div class="tp-preview">
-                            <div class="tp-icon">
-                                <i class="fas fa-chair"></i>
-                            </div>
-                            <div class="tp-overlay">
-                                <i class="fas fa-eye"></i>
-                                <span>Voir en 3D</span>
-                            </div>
-                        </div>
-                        <div class="tp-info">
-                            <h3 class="tp-title">TP1: Table & Chaise 3D</h3>
-                            <p class="tp-desc">Modélisation Blender avec textures PBR</p>
-                            <div class="tp-tags">
-                                <span class="tag">Blender</span>
-                                <span class="tag success">Complet</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            
-            
+   
+ 
+<!-- SECTION MODULES -->
+<section id="modules">
+    <div class="container">
+        <div class="header">
+            <h1 class="title">Mes Travaux Pratiques</h1>
+            <p class="subtitle">Projets de modélisation 3D interactive</p>
         </div>
-    </section>
 
-    <!-- MODALE 3D -->
-    <div class="modal" id="modal-table-chaise" onclick="closeModal('table-chaise')">
-        <div class="modal-box" onclick="event.stopPropagation()">
+        <!-- MODULE WEB 3D -->
+        <div class="module" id="module-web3d" onclick="toggleModule('web3d')">
+            <div class="module-icon">
+                <i class="fas fa-cube"></i>
+            </div>
+            <h2 class="module-title">Module Web 3D</h2>
+            <p class="module-desc">Travaux pratiques de modélisation 3D interactive</p>
             
-            <div class="modal-header">
-                <h3 class="modal-title">
-                    <i class="fas fa-cube"></i>
-                    TP1: Table & Chaise 3D
-                </h3>
-                <button class="btn-close" onclick="closeModal('table-chaise')">
-                    <i class="fas fa-times"></i>
+            <div class="module-stats">
+                <span class="stat"><i class="fas fa-tasks"></i> 2 Projets</span>
+                <span class="stat"><i class="fas fa-laptop-code"></i> Travaux</span>
+            </div>
+            
+            <div class="toggle">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+
+       <!-- CONTENEUR DES TPs -->
+<div class="content" id="content-web3d">
+    <div class="content-inner">
+        
+        <!-- TP1: TABLE & CHAISE -->
+        <div class="tp-card">
+            <div class="tp-preview">
+                <div class="tp-icon">
+                    <i class="fas fa-chair"></i>
+                </div>
+            </div>
+            <div class="tp-info">
+                <h3 class="tp-title">TP1: Table & Chaise 3D</h3>
+                <p class="tp-desc">Modélisation Blender avec textures PBR</p>
+               
+                <!-- BOUTONS TP1 -->
+                <div class="tp-buttons">
+                    <button class="btn-tp" onclick="openImageModal(event, 'image-table')">
+                        <i class="fas fa-image"></i>
+                        Render PNG
+                    </button>
+                    <a href="models/rapport01.pdf" download="TP1_Rapport.pdf" class="btn-tp" style="text-decoration: none;">
+                        <i class="fas fa-file-pdf"></i>
+                        Rapport PDF
+                    </a>
+                    <a href="models/table_chaire.blend" download="TP1_Table_Chaise.blend" class="btn-tp" style="text-decoration: none;">
+                        <i class="fas fa-download"></i>
+                        Fichier .blend
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- TP2: SCÈNE VIDEO -->
+        <div class="tp-card">
+            <div class="tp-preview">
+                <div class="tp-icon">
+                    <i class="fas fa-video"></i>
+                </div>
+            </div>
+            <div class="tp-info">
+                <h3 class="tp-title">TP2: Scène d'Intérieur 3D</h3>
+                <p class="tp-desc">Rendu vidéo avec éclairage et animations</p>
+               
+                <!-- BOUTONS TP2 -->
+                <div class="tp-buttons">
+                    <button class="btn-tp" onclick="openVideoModal(event, 'video-scene')">
+                        <i class="fas fa-video"></i>
+                        Render Vidéo
+                    </button>
+                    <a href="models/Rapport2.pdf" download="TP2_Rapport.pdf" class="btn-tp" style="text-decoration: none;">
+                        <i class="fas fa-file-pdf"></i>
+                        Rapport PDF
+                    </a>
+                    <a href="models/secene_sun.blend" download="TP2_Scene_Interieur.blend" class="btn-tp" style="text-decoration: none;">
+                        <i class="fas fa-download"></i>
+                        Fichier .blend
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+        
+    </div>
+</section>
+
+<!-- ====================================== -->
+<!-- MODALES -->
+<!-- ====================================== -->
+
+<!-- MODALE TP1: TABLE & CHAISE 3D -->
+<div class="modal" id="modal-table-chaise" onclick="closeModal('table-chaise')">
+    <div class="modal-box" onclick="event.stopPropagation()">
+        
+        <div class="modal-header">
+            <h3 class="modal-title">
+                <i class="fas fa-cube"></i>
+                TP1: Table & Chaise - Modèle 3D
+            </h3>
+            <button class="btn-close" onclick="closeModal('table-chaise')">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <div class="modal-viewer">
+            <model-viewer
+                src="models/table_chair.glb"
+                alt="Table et chaise 3D"
+                camera-controls
+                auto-rotate
+                shadow-intensity="1"
+                exposure="1"
+                ar
+                ar-modes="webxr scene-viewer quick-look">
+                
+                <button slot="ar-button" class="btn-ar">
+                    <i class="fas fa-mobile-alt"></i>
+                    Voir en AR
+                </button>
+                
+                <div class="loading" slot="poster">
+                    <div class="spinner"></div>
+                    <p>Chargement...</p>
+                </div>
+            </model-viewer>
+
+            <div class="controls">
+                <button class="btn-control active" onclick="toggleRotation(event)" title="Rotation">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
+                <button class="btn-control" onclick="resetView(event)" title="Réinitialiser">
+                    <i class="fas fa-undo"></i>
+                </button>
+                <button class="btn-control" onclick="toggleFullscreen(event)" title="Plein écran">
+                    <i class="fas fa-expand"></i>
+                </button>
+                <button class="btn-control" onclick="downloadModel(event)" title="Télécharger">
+                    <i class="fas fa-download"></i>
                 </button>
             </div>
-
-            <div class="modal-viewer">
-                <model-viewer
-                    src="models/table_chair.glb"
-                    alt="Table et chaise 3D"
-                    camera-controls
-                    auto-rotate
-                    shadow-intensity="1"
-                    exposure="1"
-                    ar
-                    ar-modes="webxr scene-viewer quick-look">
-                    
-                    <button slot="ar-button" class="btn-ar">
-                        <i class="fas fa-mobile-alt"></i>
-                        Voir en AR
-                    </button>
-                    
-                    <div class="loading" slot="poster">
-                        <div class="spinner"></div>
-                        <p>Chargement...</p>
-                    </div>
-                </model-viewer>
-
-                <div class="controls">
-                  <button class="btn-control active" onclick="toggleRotation(event)" title="Rotation">
-    <i class="fas fa-sync-alt"></i>
-</button>
-<button class="btn-control" onclick="resetView(event)" title="Réinitialiser">
-    <i class="fas fa-undo"></i>
-</button>
-<button class="btn-control" onclick="toggleFullscreen(event)" title="Plein écran">
-    <i class="fas fa-expand"></i>
-</button>
-<!-- 🆕 BOUTON TÉLÉCHARGEMENT -->
-<button class="btn-control" onclick="downloadModel(event)" title="Télécharger">
-    <i class="fas fa-download"></i>
-</button>
-
-                </div>
-            </div>
-
-            <div class="modal-info">
-                <div class="info-grid">
-                    <div class="info-item">
-                        <i class="fas fa-info-circle"></i>
-                        <h5>Description</h5>
-                        <p>Modèle Blender avec textures PBR</p>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-tools"></i>
-                        <h5>Technologies</h5>
-                        <p>Blender 3.6, WebGL, Model-Viewer</p>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-chart-bar"></i>
-                        <h5>Statistiques</h5>
-                        <p>2.5K poly • GLB • 1.2 MB</p>
-                    </div>
-                </div>
-            </div>
-
         </div>
+
+       
+
     </div>
+</div>
+
+<!-- MODALE IMAGE (TP1 - Render PNG) -->
+<div class="modal" id="modal-image-table" onclick="closeImageModal('image-table')">
+    <div class="modal-box" onclick="event.stopPropagation()">
+        <div class="modal-header">
+            <h3 class="modal-title">
+                <i class="fas fa-image"></i>
+                TP1: Table & Chaise - Render Photo
+            </h3>
+            <button class="btn-close" onclick="closeImageModal('image-table')">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="modal-viewer">
+         <img src="models/table_chair.png" alt="Rendu de la table et chaise" style="width: 100%; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.2);">
+        </div>
+
+      
+    </div>
+</div>
+
+<!-- MODALE TP2: SCÈNE 3D -->
+<div class="modal" id="modal-scene-3d" onclick="closeModal('scene-3d')">
+    <div class="modal-box" onclick="event.stopPropagation()">
+        
+        <div class="modal-header">
+            <h3 class="modal-title">
+                <i class="fas fa-cube"></i>
+                TP2: Scène d'Intérieur - Modèle 3D
+            </h3>
+            <button class="btn-close" onclick="closeModal('scene-3d')">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <div class="modal-viewer">
+            <model-viewer
+                src=""
+                alt="Scène d'intérieur 3D"
+                camera-controls
+                auto-rotate
+                shadow-intensity="1"
+                exposure="1"
+                ar
+                ar-modes="webxr scene-viewer quick-look">
+                
+                <button slot="ar-button" class="btn-ar">
+                    <i class="fas fa-mobile-alt"></i>
+                    Voir en AR
+                </button>
+                
+                <div class="loading" slot="poster">
+                    <div class="spinner"></div>
+                    <p>Chargement...</p>
+                </div>
+            </model-viewer>
+
+            <div class="controls">
+                <button class="btn-control active" onclick="toggleRotation(event)" title="Rotation">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
+                <button class="btn-control" onclick="resetView(event)" title="Réinitialiser">
+                    <i class="fas fa-undo"></i>
+                </button>
+                <button class="btn-control" onclick="toggleFullscreen(event)" title="Plein écran">
+                    <i class="fas fa-expand"></i>
+                </button>
+                <button class="btn-control" onclick="downloadModel(event)" title="Télécharger">
+                    <i class="fas fa-download"></i>
+                </button>
+            </div>
+        </div>
+
+     
+
+    </div>
+</div>
+
+<!-- MODALE VIDEO (TP2 - Vidéo MP4) -->
+<div class="modal" id="modal-video-scene" onclick="closeVideoModal('video-scene')">
+    <div class="modal-box" onclick="event.stopPropagation()">
+        <div class="modal-header">
+            <h3 class="modal-title">
+                <i class="fas fa-video"></i>
+                TP2: Scène d'Intérieur - Rendu Vidéo
+            </h3>
+            <button class="btn-close" onclick="closeVideoModal('video-scene')">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="modal-viewer">
+            <video id="video-scene" width="100%" controls style="border-radius: 10px;">
+                <source src="models/scene_sun.mp4" type="video/mp4">
+                Votre navigateur ne supporte pas la lecture de vidéos.
+            </video>
+        </div>
+        
+     
+    </div>
+</div>
+
+
+
+
+
     
 
     <!-- SECTION CONTACT -->

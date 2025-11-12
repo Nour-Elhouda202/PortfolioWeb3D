@@ -526,5 +526,118 @@ function downloadModel(e) {
 
 
 
+// ========================================
+// TOGGLE MODULE WEB3D
+// ========================================
+function toggleModule(moduleId) {
+    const content = document.getElementById('content-' + moduleId);
+    const module = document.getElementById('module-' + moduleId);
+    const icon = module.querySelector('.toggle i');
+    
+    if (content.classList.contains('active')) {
+        content.classList.remove('active');
+        module.classList.remove('active');
+        icon.style.transform = 'rotate(0deg)';
+    } else {
+        content.classList.add('active');
+        module.classList.add('active');
+        icon.style.transform = 'rotate(180deg)';
+    }
+}
 
+// ========================================
+// MODALES 3D (TP1 - Table & Chaise)
+// ========================================
+function openModal(modalId) {
+    const modal = document.getElementById('modal-' + modalId);
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
 
+function closeModal(modalId) {
+    const modal = document.getElementById('modal-' + modalId);
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+// ========================================
+// MODALE IMAGE (Render PNG)
+// ========================================
+function openImageModal(event, imageId) {
+    event.stopPropagation();
+    const modal = document.getElementById('modal-' + imageId);
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeImageModal(imageId) {
+    const modal = document.getElementById('modal-' + imageId);
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+// ========================================
+// MODALE VIDEO (TP2 - Scène)
+// ========================================
+function openVideoModal(event, videoId) {
+    event.stopPropagation();
+    const modal = document.getElementById('modal-' + videoId);
+    const video = document.getElementById(videoId);
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    video.play();
+}
+
+function closeVideoModal(videoId) {
+    const modal = document.getElementById('modal-' + videoId);
+    const video = document.getElementById(videoId);
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+    video.pause();
+    video.currentTime = 0;
+}
+
+// ========================================
+// CONTRÔLES MODEL-VIEWER
+// ========================================
+function toggleRotation(event) {
+    event.stopPropagation();
+    const viewer = event.target.closest('.modal-viewer').querySelector('model-viewer');
+    const btn = event.currentTarget;
+    
+    if (viewer.autoRotate) {
+        viewer.autoRotate = false;
+        btn.classList.remove('active');
+    } else {
+        viewer.autoRotate = true;
+        btn.classList.add('active');
+    }
+}
+
+function resetView(event) {
+    event.stopPropagation();
+    const viewer = event.target.closest('.modal-viewer').querySelector('model-viewer');
+    viewer.resetTurntableRotation();
+    viewer.cameraOrbit = 'auto auto auto';
+}
+
+function toggleFullscreen(event) {
+    event.stopPropagation();
+    const viewer = event.target.closest('.modal-viewer').querySelector('model-viewer');
+    
+    if (!document.fullscreenElement) {
+        viewer.requestFullscreen();
+    } else {
+        document.exitFullscreen();
+    }
+}
+
+function downloadModel(event) {
+    event.stopPropagation();
+    const viewer = event.target.closest('.modal-viewer').querySelector('model-viewer');
+    const modelSrc = viewer.getAttribute('src');
+    const link = document.createElement('a');
+    link.href = modelSrc;
+    link.download = modelSrc.split('/').pop();
+    link.click();
+}
