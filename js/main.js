@@ -641,3 +641,94 @@ function downloadModel(event) {
     link.download = modelSrc.split('/').pop();
     link.click();
 }
+
+
+
+
+// Ouvrir n'importe quelle modale (TP1, TP2, TP4...)
+function openModal(id) {
+  const modal = document.getElementById('modal-' + id);
+  if (!modal) return;
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+// Fermer modale
+function closeModal(id) {
+  const modal = document.getElementById('modal-' + id);
+  if (!modal) return;
+  modal.classList.remove('active');
+  document.body.style.overflow = 'auto';
+
+  // si la modale contient une vidéo, on la stoppe
+  const video = modal.querySelector('video');
+  if (video) {
+    video.pause();
+    video.currentTime = 0;
+  }
+}
+
+// Rotation on/off du modèle TP4
+function toggleRotation(event) {
+  event.stopPropagation();
+  const viewer = event.target.closest('.modal-viewer').querySelector('model-viewer');
+  const btn = event.currentTarget;
+  if (!viewer) return;
+
+  const rotating = viewer.hasAttribute('auto-rotate');
+  if (rotating) {
+    viewer.removeAttribute('auto-rotate');
+    btn.classList.remove('active');
+  } else {
+    viewer.setAttribute('auto-rotate', '');
+    btn.classList.add('active');
+  }
+}
+
+// Réinitialiser vue du modèle
+function resetView(event) {
+  event.stopPropagation();
+  const viewer = event.target.closest('.modal-viewer').querySelector('model-viewer');
+  if (!viewer) return;
+  viewer.resetTurntableRotation();
+  viewer.cameraOrbit = 'auto auto auto';
+  viewer.fieldOfView = '45deg';
+}
+
+// Plein écran du viewer TP4
+function toggleFullscreen(event) {
+  event.stopPropagation();
+  const wrapper = event.target.closest('.modal-viewer');
+  if (!wrapper) return;
+
+  if (!document.fullscreenElement) {
+    wrapper.requestFullscreen().catch(err => console.error('Erreur plein écran', err));
+  } else {
+    document.exitFullscreen();
+  }
+}
+
+// Télécharger le modèle GLB affiché
+function downloadModel(event) {
+  event.stopPropagation();
+  const viewer = event.target.closest('.modal-viewer').querySelector('model-viewer');
+  if (!viewer) return;
+
+  const src = viewer.getAttribute('src');
+  if (!src) return;
+
+  const link = document.createElement('a');
+  link.href = src;
+  link.download = src.split('/').pop();
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
+
+
+
+
+
+
+

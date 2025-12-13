@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Three.js Ultimate + Position Cube</title>
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(45deg, #111, #222);
+      display: flex;
+      height: 100vh;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: white;
+    }
+    
+    .wrapper {
+      flex: 1 1 0;
+      height: 100vh;
+      padding: 15px;
+      border: 1px solid #444;
+      box-sizing: border-box;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .header {
+      background: rgba(0,170,255,0.2);
+      padding: 10px;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .controls {
+      background: rgba(0,0,0,0.7);
+      padding: 12px;
+      border-radius: 8px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .control-group label {
+      font-size: 11px;
+      opacity: 0.8;
+    }
+
+    button {
+      padding: 6px 10px;
+      background: #333;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 11px;
+      transition: all 0.2s;
+      border: 1px solid #555;
+    }
+
+    button:hover { background: #555; }
+    button.active { background: #00aaff !important; box-shadow: 0 0 10px #00aaff; }
+
+    input[type="range"] {
+      width: 100%;
+      height: 4px;
+      background: #444;
+      border-radius: 2px;
+      outline: none;
+      -webkit-appearance: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      background: #00aaff;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .canvas-container {
+      flex: 1;
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .wrapper canvas {
+      width: 100% !important;
+      height: 100% !important;
+      display: block;
+      border-radius: 8px;
+    }
+
+    .stats {
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      font-size: 10px;
+      opacity: 0.7;
+      background: rgba(0,0,0,0.5);
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+
+    .position-display {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      font-size: 10px;
+      background: rgba(0,0,0,0.5);
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+  </style>
+  <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+</head>
+<body>
+
+<div id="scene1" class="wrapper">
+  <div class="header">🎮 Cube Métallique - POSITION X/Y/Z</div>
+  <div class="controls">
+    <div class="control-group">
+      <label>Rotation</label>
+      <button id="rotation1" onclick="toggleRotation(1)">🔄 ON</button>
+    </div>
+    <div class="control-group">
+      <label>Mouvement</label>
+      <button id="movement1" onclick="toggleMovement(1)">📍 OFF</button>
+    </div>
+    <div class="control-group">
+      <label>Position X</label>
+      <input type="range" id="posX1" min="-3" max="3" step="0.1" value="0" onchange="setPosition(1, 'x', this.value)">
+    </div>
+    <div class="control-group">
+      <label>Position Y</label>
+      <input type="range" id="posY1" min="-3" max="3" step="0.1" value="0" onchange="setPosition(1, 'y', this.value)">
+    </div>
+    <div class="control-group">
+      <label>Position Z</label>
+      <input type="range" id="posZ1" min="-3" max="3" step="0.1" value="0" onchange="setPosition(1, 'z', this.value)">
+    </div>
+    <div class="control-group">
+      <label>Reset Position</label>
+      <button onclick="resetPosition(1)">📍 Reset</button>
+    </div>
+    <div class="control-group">
+      <label>Taille</label>
+      <input type="range" id="scale1" min="0.5" max="3" step="0.1" value="1.5" onchange="setScale(1, this.value)">
+    </div>
+    <div class="control-group">
+      <label>Couleur</label>
+      <button onclick="changeColor(1,'red')">🔴</button>
+      <button onclick="changeColor(1,'gold')">⭐</button>
+    </div>
+  </div>
+  <div class="canvas-container">
+    <div class="position-display" id="posDisplay1">X:0 Y:0 Z:0</div>
+    <div class="stats" id="stats1">FPS: --</div>
+  </div>
+</div>
+
+<div id="scene2" class="wrapper">
+  <div class="header">💎 Cube Verre - POSITION X/Y/Z</div>
+  <div class="controls">
+    <div class="control-group">
+      <label>Rotation</label>
+      <button id="rotation2" onclick="toggleRotation(2)">🔄 ON</button>
+    </div>
+    <div class="control-group">
+      <label>Mouvement</label>
+      <button id="movement2" onclick="toggleMovement(2)">📍 OFF</button>
+    </div>
+    <div class="control-group">
+      <label>Position X</label>
+      <input type="range" id="posX2" min="-3" max="3" step="0.1" value="0" onchange="setPosition(2, 'x', this.value)">
+    </div>
+    <div class="control-group">
+      <label>Position Y</label>
+      <input type="range" id="posY2" min="-3" max="3" step="0.1" value="0" onchange="setPosition(2, 'y', this.value)">
+    </div>
+    <div class="control-group">
+      <label>Position Z</label>
+      <input type="range" id="posZ2" min="-3" max="3" step="0.1" value="0" onchange="setPosition(2, 'z', this.value)">
+    </div>
+    <div class="control-group">
+      <label>Reset Position</label>
+      <button onclick="resetPosition(2)">📍 Reset</button>
+    </div>
+    <div class="control-group">
+      <label>Opacité</label>
+      <input type="range" id="opacity2" min="0" max="1" step="0.01" value="0.25" onchange="setOpacity(2, this.value)">
+    </div>
+    <div class="control-group">
+      <label>Couleur</label>
+      <button onclick="changeColor(2,'cyan')">🟦</button>
+      <button onclick="changeColor(2,'pink')">🌸</button>
+    </div>
+  </div>
+  <div class="canvas-container">
+    <div class="position-display" id="posDisplay2">X:0 Y:0 Z:0</div>
+    <div class="stats" id="stats2">FPS: --</div>
+  </div>
+</div>
+
+<script>
+let scenes = {};
+let lastTime = 0;
+let frameCount = 0;
+
+function createScene(containerId, meshFactory) {
+  const sceneId = containerId.replace('scene', '');
+  const container = document.getElementById(containerId);
+  const canvasContainer = container.querySelector('.canvas-container');
+  const width = canvasContainer.clientWidth;
+  const height = canvasContainer.clientHeight;
+
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x111133);
+
+  const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+  camera.position.z = 5;
+
+  const renderer = new THREE.WebGLRenderer({ 
+    antialias: true,
+    alpha: true
+  });
+
+  canvasContainer.appendChild(renderer.domElement);
+
+  const mesh = meshFactory();
+  scene.add(mesh);
+
+
+  const gridHelper = new THREE.GridHelper(10, 10, 0x444444, 0x222222);
+  scene.add(gridHelper);
+
+
+  const ambientLight = new THREE.AmbientLight(0x404040, 0.3);
+  scene.add(ambientLight);
+  const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+  directionalLight.position.set(2, 2, 5);
+  scene.add(directionalLight);
+  const pointLight = new THREE.PointLight(0x00aaff, 0.5, 10);
+  pointLight.position.set(-2, 2, 3);
+  scene.add(pointLight);
+
+  scenes[sceneId] = {
+    mesh: mesh,
+    renderer: renderer,
+    camera: camera,
+    scene: scene,
+    rotationActive: true,
+    movementActive: false,
+    time: 0,
+    speed: 0.01,
+    scale: 1.5,
+    position: { x: 0, y: 0, z: 0 },
+    fps: 0
+  };
+
+  let prevTime = performance.now();
+  function animate(currentTime) {
+    requestAnimationFrame(animate);
+    
+    const data = scenes[sceneId];
+    data.time += 0.016;
+
+   
+    frameCount++;
+    if (currentTime - prevTime > 1000) {
+      data.fps = Math.round(frameCount * 1000 / (currentTime - prevTime));
+      document.getElementById(`stats${sceneId}`).textContent = `FPS: ${data.fps}`;
+      frameCount = 0;
+      prevTime = currentTime;
+    }
+
+  
+    document.getElementById(`posDisplay${sceneId}`).textContent = 
+      `X:${data.position.x.toFixed(1)} Y:${data.position.y.toFixed(1)} Z:${data.position.z.toFixed(1)}`;
+
+
+    if (data.rotationActive) {
+      data.mesh.rotation.x += data.speed;
+      data.mesh.rotation.y += data.speed * 1.2;
+      data.mesh.rotation.z += data.speed * 0.8;
+    }
+
+   
+    if (data.movementActive) {
+      data.mesh.position.x = Math.sin(data.time * 1.5) * 0.8;
+      data.mesh.position.y = Math.cos(data.time * 2) * 0.5;
+      data.mesh.position.z = Math.sin(data.time * 0.7) * 0.3;
+      data.position = data.mesh.position;
+    }
+
+  
+    camera.position.x = Math.sin(data.time * 0.1) * 0.3;
+    camera.lookAt(scene.position);
+
+    data.renderer.render(data.scene, data.camera);
+  }
+  animate();
+
+ 
+  const resizeObserver = new ResizeObserver((entries) => {
+    for (let entry of entries) {
+      const rect = entry.contentRect;
+      renderer.setSize(rect.width, rect.height);
+      camera.aspect = rect.width / rect.height;
+      camera.updateProjectionMatrix();
+    }
+  });
+  resizeObserver.observe(canvasContainer);
+}
+
+function setPosition(sceneId, axis, value) {
+  scenes[sceneId].mesh.position[axis] = parseFloat(value);
+  scenes[sceneId].position[axis] = parseFloat(value);
+}
+
+function resetPosition(sceneId) {
+  scenes[sceneId].mesh.position.set(0, 0, 0);
+  scenes[sceneId].position = { x: 0, y: 0, z: 0 };
+  
+  // Reset sliders
+  document.getElementById(`posX${sceneId}`).value = 0;
+  document.getElementById(`posY${sceneId}`).value = 0;
+  document.getElementById(`posZ${sceneId}`).value = 0;
+}
+
+function toggleRotation(sceneId) {
+  scenes[sceneId].rotationActive = !scenes[sceneId].rotationActive;
+  updateButton(`rotation${sceneId}`, scenes[sceneId].rotationActive);
+}
+
+function toggleMovement(sceneId) {
+  scenes[sceneId].movementActive = !scenes[sceneId].movementActive;
+  updateButton(`movement${sceneId}`, scenes[sceneId].movementActive);
+}
+
+function changeColor(sceneId, colorName) {
+  const colors = {
+    red: 0xff4444, gold: 0xffaa00, cyan: 0x44ffff, pink: 0xff44aa,
+    blue: 0x4444ff, green: 0x44ff44, purple: 0xaa44ff, white: 0xffffff
+  };
+  scenes[sceneId].mesh.material.color.setHex(colors[colorName]);
+}
+
+function setScale(sceneId, value) {
+  scenes[sceneId].mesh.scale.setScalar(parseFloat(value));
+}
+
+function setOpacity(sceneId, value) {
+  scenes[sceneId].mesh.material.opacity = parseFloat(value);
+  scenes[sceneId].mesh.material.transparent = true;
+}
+
+function updateButton(btnId, active) {
+  const btn = document.getElementById(btnId);
+  if (btn) {
+    btn.classList.toggle('active', active);
+    btn.textContent = active ? 'ON' : 'OFF';
+  }
+}
+
+
+createScene('scene1', () => {
+  const geom = new THREE.BoxGeometry(1.5, 1.5, 1.5);
+  const mat = new THREE.MeshStandardMaterial({ 
+    color: 0x00aaff,
+    metalness: 0.6,
+    roughness: 0.2
+  });
+  return new THREE.Mesh(geom, mat);
+});
+
+createScene('scene2', () => {
+  const geom = new THREE.BoxGeometry(1.2, 1.2, 1.2);
+  const mat = new THREE.MeshStandardMaterial({
+    color: 0x88ccff,
+    metalness: 0.0,
+    roughness: 0.05,
+    transparent: true,
+    opacity: 0.25,
+    side: THREE.DoubleSide
+  });
+  return new THREE.Mesh(geom, mat);
+});
+</script>
+</body>
+</html>
